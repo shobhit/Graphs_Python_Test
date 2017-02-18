@@ -1,3 +1,5 @@
+#Here are two versions where first version is Adding vertices first and then adding edges
+#Second part is where only edges are added and everything is managed by the program
 from __future__ import print_function
 
 
@@ -7,44 +9,41 @@ class Vertex(object):
 
 
 class Graph:
-    # vertices = {}
-    # edges = []
-    # edge_indices = {}
+    vertices = {}
+    edges = []
+    edge_indices = {}
 
     vertices_map = {}
     edge_indices_map = {}
     edges_array = []
 
-    # def add_vertex(self, vertex):
-    #     if isinstance(vertex, Vertex) and vertex.name not in self.vertices:
-    #         self.vertices[vertex.name] = vertex
-    #
-    #         for row in self.edges:
-    #             row.append(0)
-    #
-    #         self.edges.append([0] * (len(self.edges) + 1))
-    #         self.edge_indices[vertex.name] = ord(vertex.name) % 65
-    #         return True
-    #     else:
-    #         return False
-    #
-    # def add_edge(self, u, v, weight=1):
-    #     if u in self.vertices and v in self.vertices:
-    #         self.edges[self.edge_indices[u]][self.edge_indices[v]] = weight
-    #         self.edges[self.edge_indices[v]][self.edge_indices[u]] = weight
-    #         return True
-    #     else:
-    #         return False
-    #
-    # def print_graph(self):
-    #     print(self.edge_indices)
-    #     print(self.edges)
-    #
-    #     for v, i in sorted(self.edge_indices.items()):
-    #         print(v + ' ', end='')
-    #         for j in range(len(self.edges)):
-    #             print(self.edges[i][j], end='')
-    #         print(' ')
+    def add_vertex(self, vertex):
+        if isinstance(vertex, Vertex) and vertex.name not in self.vertices:
+            self.vertices[vertex.name] = vertex
+
+            for row in self.edges:
+                row.append(0)
+
+            self.edges.append([0] * (len(self.edges) + 1))
+            self.edge_indices[vertex.name] = ord(vertex.name) % 65
+            return True
+        else:
+            return False
+
+    def add_edge(self, u, v, weight=1):
+        if u in self.vertices and v in self.vertices:
+            self.edges[self.edge_indices[u]][self.edge_indices[v]] = weight
+            self.edges[self.edge_indices[v]][self.edge_indices[u]] = weight
+            return True
+        else:
+            return False
+
+    def print_graph(self):
+        for v, i in sorted(self.edge_indices.items()):
+            print(v + ' ', end='')
+            for j in range(len(self.edges)):
+                print(self.edges[i][j], end='')
+            print(' ')
 
     def manage_edge(self, edge):
         if edge.name not in self.vertices_map:
@@ -69,20 +68,18 @@ class Graph:
             print(v, self.edges_array[i])
 
 
-# g = Graph()
-# print(str(len(g.vertices)))
-# a = Vertex('A')
-# g.add_vertex(a)
-# g.add_vertex(Vertex('B'))
-# for i in range(ord('A'), ord('G')):
-#     g.add_vertex(Vertex(chr(i)))
-#
-# # edges = ['AB', 'AE', 'BF', 'CG', 'DE', 'DH', 'EH', 'FG', 'FI', 'FJ', 'GJ', 'HI']
-# edges = ["AB", "BD", "DE", "DC", "CF"]
-# for edge in edges:
-#     g.add_edge(edge[:1], edge[1:])
-#
-# g.print_graph()
+g = Graph()
+a = Vertex('A')
+g.add_vertex(a)
+g.add_vertex(Vertex('B'))
+for i in range(ord('A'), ord('G')):
+    g.add_vertex(Vertex(chr(i)))
+
+edges = ['AB', 'AE', 'BF', 'CG', 'DE', 'DH', 'EH', 'FG', 'FI', 'FJ', 'GJ', 'HI']
+for edge in edges:
+    g.add_edge(edge[:1], edge[1:])
+
+g.print_graph()
 
 r = Graph()
 edges = ["AB", "BD", "DE", "DC", "CF"]

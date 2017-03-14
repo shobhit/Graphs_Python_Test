@@ -1,5 +1,5 @@
-#Here are two versions where first version is Adding vertices first and then adding edges
-#Second part is where only edges are added and everything is managed by the program
+# Here are two versions where first version is Adding vertices first and then adding edges
+# Second part is where only edges are added and everything is managed by the program
 from __future__ import print_function
 
 
@@ -54,7 +54,7 @@ class Graph:
             self.edges_array.append([0] * (len(self.edges_array) + 1))
 
     def add_edges(self, edge):
-        map(self.manage_edge,map(Vertex,list(edge)))
+        map(self.manage_edge, map(Vertex, list(edge)))
 
     def build_graph(self, edges):
         for k in edges:
